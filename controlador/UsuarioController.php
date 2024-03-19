@@ -52,5 +52,14 @@ if($_POST['funcion']=='editar_usuario'){
     $usuario->editar($id_usuario, $telefono ,$residencia, $correo, $sexo, $adicional);
     echo 'editado';
 }
+//Esto nos permite obtener los datos del formulario Cambiar contraseña  y modificarlos en la BD
+if($_POST['funcion']=='cambiar_contra'){
+    $id_usuario=$_POST['id_usuario'];
+    $oldpass=$_POST['oldpass'];
+    $newpass=$_POST['newpass'];
+    $usuario->cambiar_contra($id_usuario,$oldpass,$newpass);// Acá se invoca al usuario, del modelo usuario que realiza el metodo cambiar contra, al cual se le pasa el Id_usuario, oldpass y newpass
+
   
+}
+
 ?>

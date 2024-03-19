@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css"> 
-    <link rel="stylesheet" type="text/css" href="css/css/all.min.css"> 
+    <link rel="stylesheet" type="text/css" href="css/css/all.min.css">
 </head>
 
 <!--este codigo se realiza para permitir mantenernos en la vista del usuario logueado cuando se presione el boton hacia atras y no redirija al inicio de sesion--> 

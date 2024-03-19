@@ -65,11 +65,11 @@ $(document).ready(function(){
             let adicional=$('#adicional').val();
             funcion='editar_usuario';
             $.post('../controlador/UsuarioController.php',{id_usuario,funcion,telefono,residencia,correo,sexo,adicional},(response)=>{
-               console.log(response);
+              // console.log(response);
                 if(response=='editado'){
                   $('#editado').hide('slow');//para que permanezca oculto
-                    $('#editado').show(10000);//para que el alert se muestr por 1 segundo
-                    $('#editado').hide(6000);//para que se oculten
+                    $('#editado').show(2000);//para que el alert se muestr por 1 segundo
+                    $('#editado').hide(3000);//para que se oculten
                     $('#form-usuario').trigger('reset');//para que todos los campos queden vacios
                 }
                 edit=false;// para que se desactive la bandera y no quede siempre habiltado para editar
@@ -78,12 +78,38 @@ $(document).ready(function(){
         }
         else{
            $('#noeditado').hide('slow');//para que permanezca oculto
-            $('#noeditado').show(10000);//para que el alert se muestr por 1 segundo
-            $('#noeditado').hide(6000);//para que se oculten
+            $('#noeditado').show(2000);//para que el alert se muestr por 1 segundo
+            $('#noeditado').hide(3000);//para que se oculten
             $('#form-usuario').trigger('reset');//para que todos los campos queden vacios
        
         }
         e.preventDefault();
     })
+
+    $('#form-pass').submit(e=>{
+        let oldpass=$('#oldpass').val();
+        let newpass=$('#newpass').val();
+       // console.log(oldpass + newpass); para comprobar que esta capturando los datos del input
+        funcion='cambiar_contra';
+        $.post('../controlador/UsuarioController.php',{id_usuario,funcion,oldpass,newpass},(response)=>{
+           // console.log(response);
+           if(response=='update'){
+            $('#update').hide('slow');//para que permanezca oculto
+            $('#update').show(2000);//para que el alert se muestr por 1 segundo
+            $('#update').hide(3000);//para que se oculten
+            $('#form-pass').trigger('reset');//para que todos los campos queden vacios
+       
+           }
+           else{
+            $('#noupdate').hide('slow');//para que permanezca oculto
+            $('#noupdate').show(2000);//para que el alert se muestr por 1 segundo
+            $('#noupdate').hide(3000);//para que se oculten
+            $('#form-pass').trigger('reset');//para que todos los campos queden vacios
+       
+           }
+        });//ya que se accede a la contraseña que corresponde a la tabla usuario
+        e.preventDefault();//Para evitar que se refresque la pagina.
+
+    });
 
 })//nos permite ejecutar funciones una vez cargada la pagina actual
