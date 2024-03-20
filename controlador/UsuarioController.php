@@ -3,12 +3,16 @@ include_once '../modelo/Usuario.php';
 $usuario = new Usuario();
 if($_POST['funcion']=='buscar_usuario'){
     $json=array();
-$usuario->obtener_datos($_POST['dato']);//metodo invocar usuario, la cual obtendra todos los datos correspondiente a ese ID del usuario
+    $fecha_actual = new DateTime();// se crea una variable y se invoca un objeto llamado DateTime, quien devielve fecha actual y tiempo
+    $usuario->obtener_datos($_POST['dato']);//metodo invocar usuario, la cual obtendra todos los datos correspondiente a ese ID del usuario
     foreach ($usuario->objetos as $objeto){
+        $nacimiento = new DateTime($objeto->edad);// variable nacimiento  la cual se convierte en un objeto DateTime
+        $edad = $nacimiento->diff($fecha_actual);// el metodo diff compara la fecha actual con la de nacimiento y crea una resta
+        $edad_years = $edad->y;// esta variable se crea para poder acceder a la diferencia del año y poder reeplazar en el campo edad para obtener la edad actualizada
         $json[]=array(
            'nombre'=>$objeto->nombre_us,
            'apellidos'=>$objeto->apellidos_us,
-           'edad'=>$objeto->edad,
+           'edad'=>$edad_years,// aqui se reeplaza la variable para que se muestre solo la edad en la vista
            'dni'=>$objeto->dni_us,
            'tipo'=>$objeto->nombre_tipo,
            'telefono'=>$objeto->telefono_us,

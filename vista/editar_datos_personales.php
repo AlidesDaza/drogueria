@@ -94,7 +94,7 @@ include_once'layouts/header.php';
                                     <p  id="apellidos_us"class="text-muted text-center">Apellido</p>
                                     <ul class="list-group list-group-unbordered mb-3">
                                         <li class="list-group-item">
-                                            <b style="color:#0B7300">Edad</b><a id="edad" class="float-right">12</a>
+                                            <b style="color:#0B7300">Edad</b><a id="edad" class="float-right">25</a>
                                         </li>
                                         <li class="list-group-item">
                                             <b style="color:#0B7300">DNi</b><a id="dni_us" class="float-right">12</a>
