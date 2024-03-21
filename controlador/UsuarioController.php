@@ -66,4 +66,30 @@ if($_POST['funcion']=='cambiar_contra'){
   
 }
 
+if($_POST['funcion']=='buscar_usuarios_adm'){
+    $json=array();
+    $fecha_actual = new DateTime();// se crea una variable y se invoca un objeto llamado DateTime, quien devielve fecha actual y tiempo
+    $usuario->buscar();//metodo invocar usuario, la cual obtendra todos los datos correspondiente a ese ID del usuario
+    foreach ($usuario->objetos as $objeto){
+        $nacimiento = new DateTime($objeto->edad);// variable nacimiento  la cual se convierte en un objeto DateTime
+        $edad = $nacimiento->diff($fecha_actual);// el metodo diff compara la fecha actual con la de nacimiento y crea una resta
+        $edad_years = $edad->y;// esta variable se crea para poder acceder a la diferencia del año y poder reeplazar en el campo edad para obtener la edad actualizada
+        $json[]=array(
+           'nombre'=>$objeto->nombre_us,
+           'apellidos'=>$objeto->apellidos_us,
+           'edad'=>$edad_years,// aqui se reeplaza la variable para que se muestre solo la edad en la vista
+           'dni'=>$objeto->dni_us,
+           'tipo'=>$objeto->nombre_tipo,
+           'telefono'=>$objeto->telefono_us,
+           'residencia'=>$objeto->residencia_us,
+           'correo'=>$objeto->correo_us,
+           'sexo'=>$objeto->sexo_us,
+           'adicional'=>$objeto->adicional_us
+
+        );
+    }
+    $jsonstring =json_encode($json);//nos devuelve un json codificao, nos devuelve un strin para poderlo usar en nusetro Js
+    echo $jsonstring;
+}
+
 ?>

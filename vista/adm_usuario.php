@@ -87,7 +87,10 @@ include_once'layouts/header.php';
                     </div>
                 </div>
             </div>
-            <div class="card-body">
+            <div  class="card-body">
+                <div id="usuarios" class="row d-flex align-items-stretch">
+
+                </div>
 
             </div>
             <div class="card-footer">
@@ -105,4 +108,4 @@ else{
     header('Location: ../index.php');
 }
 ?>
-<script src="../js/Usuario.js"></script>
+<script src="../js/Gestion_usuario.js"></script>

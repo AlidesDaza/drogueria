@@ -41,6 +41,26 @@
             echo 'noupdate';
          }
      }
+     function buscar(){
+        if(!empty($_POST['consulta'])){
+            $consulta=$_POST['consulta'];
+            $sql="SELECT * FROM usuario join tipo_us on us_tipo=id_tipo_us where nombre_us LIKE :consulta";
+            $query =$this->acceso->prepare($sql);
+            $query->execute(array(':consulta'=>"%$consulta%"));
+            $this->objetos=$query->fetchall();
+            return $this->objetos;
+        }   
+
+        else{
+            $sql="SELECT * FROM usuario join tipo_us on us_tipo=id_tipo_us where nombre_us NOT LIKE'' ORDER BY id_usuario LIMIT 25";
+            $query =$this->acceso->prepare($sql);
+            $query->execute();
+            $this->objetos=$query->fetchall();
+            return $this->objetos;
+        }   
+
+        }
+     
  }
 
 
