@@ -17,6 +17,10 @@ if(!empty($_SESSION['us_tipo'])){// si hay una sesion en curso debe realizarse e
         case 2:// si se da este case se va al perfil del tecnico
             header('Location: ../vista/tec_catalogo.php');// nos redireciona a la pagina del tecnico.
         break;
+
+        case 3:// si se da este case se va al perfil del Administrador
+            header('Location: ../vista/adm_catalogo.php');// nos redireciona a la pagina del tecnico.
+        break;
     }
 }
 else{ //control de acceso y direccionamiento de roles
@@ -35,6 +39,10 @@ if(!empty($usuario->objetos)){// si encuentra un ususario verifica que rol tiene
         
             case 2:// si se da este case se va al perfil del tecnico
                 header('Location: ../vista/tec_catalogo.php');// nos redireciona a la pagina del tecnico.
+            break;
+                    
+            case 3:// si se da este case se va al perfil del Administrador
+                header('Location: ../vista/adm_catalogo.php');// nos redireciona a la pagina del tecnico.
             break;
         }
 

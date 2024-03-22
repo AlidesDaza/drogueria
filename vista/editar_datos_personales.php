@@ -1,6 +1,6 @@
 <?php
 session_start();
-if($_SESSION['us_tipo']==1){// se realiza este if para verificar que el usuario logueado tiene rol de administrador
+if($_SESSION['us_tipo']==1||$_SESSION['us_tipo']==3){// se realiza este if para verificar que el usuario logueado tiene rol de administrador
 include_once'layouts/header.php';
 ?>
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if($_SESSION['us_tipo']==1){// se realiza este if para verificar que el usuario logueado tiene rol de administrador
+if($_SESSION['us_tipo']==1||$_SESSION['us_tipo']==3){// se realiza este if para verificar que el usuario logueado tiene rol de administrador
 include_once'layouts/header.php';
 ?>
 
@@ -64,7 +64,7 @@ include_once'layouts/header.php';
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Gestion Usuarios <button  type="button" data-toggle="modal" data-target="#crearusuario" class="btn bg-gradient-primary ml-2">Crear Usuarios</button></h1>
-           
+            <input type="hidden" id="tipo_usuario" value="<?php echo $_SESSION['us_tipo']?>">
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

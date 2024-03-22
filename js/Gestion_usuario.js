@@ -3,6 +3,7 @@
 //se utiliza el selector para acceder a todo el documento
 $(document).ready(function(){
     //si se presiona una tecla en buscar se va ejecutar esta funcion
+    var tipo_usuario =$('#tipo_usuario').val();
     buscar_datos();
     var funcion;
     function buscar_datos(consulta){
@@ -38,15 +39,42 @@ $(document).ready(function(){
                     </div>
                   </div>
                   <div class="card-footer">
-                    <div class="text-right">
-                        <button class="btn btn-danger">
-                            <i class="fas fa-window-close mr-2"> </i>Eliminar
-                        </button>
+                    <div class="text-right">`; // se utiliza comillas invertidas, para permitir la interpolación de variables y expresiones en una cadena
+                    // se utilizaran estos if para ocultar el boton eliminar a los usuarios que no tienen prioridad, de igual manera para evitar que un usuario se borre así mismo
+
+                    if(tipo_usuario==3){
+                        if(usuario.tipo_usuario!=3){// en este if impide que se muestre el boton eliminar en el card del root pero si en los demas usuarios(administrador, tecnico)
+                          template+=`
+                            <button class="btn btn-danger mr-1">
+                                <i class="fas fa-window-close mr-2"> </i>Eliminar
+                            </button>
+                          `;
+                        }
+                        if(usuario.tipo_usuario==2){//este if es para incorporar un boton que permita ascender a los tecnicos a administradores
+                          template+=`
+                          <button class="btn btn-primary ml-1">
+                              <i class="fas fa-window-close mr-2"> </i>Ascender
+                          </button>
+                        `;
+                        }
+                      }
+                      else{// en este if si el tipo de usuario es administrador(2), podra mostrarse el boton eliminar solo para los tecnicos, pero no para el ni para el resto administradores, por tener la misma prioridad y mucho menos eliminar al root
+                        
+                          if(tipo_usuario==1 && usuario.tipo_usuario!=1 && usuario.tipo_usuario!=3){
+                            template+=`
+                            <button class="btn btn-danger">
+                                <i class="fas fa-window-close mr-2"> </i>Eliminar
+                            </button>
+                          `;
+                          }
+                      }
+                               
+                      template+=` 
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-                `;
+                    `;
                 
             })
             $('#usuarios').html(template)

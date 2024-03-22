@@ -84,7 +84,9 @@ if($_POST['funcion']=='buscar_usuarios_adm'){
            'residencia'=>$objeto->residencia_us,
            'correo'=>$objeto->correo_us,
            'sexo'=>$objeto->sexo_us,
-           'adicional'=>$objeto->adicional_us
+           'adicional'=>$objeto->adicional_us,
+           'tipo_usuario'=>$objeto->us_tipo  // esta variable se crea para comparar solo los id y no el string como se presenta en la variable 'tipo' declarada mas arriba
+           //
 
         );
     }
