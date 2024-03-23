@@ -61,6 +61,22 @@
 
         }
      
+        //esta funcion corresponde a la creacion de usuarios por parte del ROOT
+        function crear($nombre,$apellido,$edad,$dni,$pass,$tipo){
+            $sql="SELECT id_usuario FROM usuario where dni_us=:dni";
+            $query =$this->acceso->prepare($sql);
+            $query->execute(array(':dni'=>$dni));
+            $this->objetos=$query->fetchall(); 
+            if(!empty($this->objetos)){
+                echo 'noadd';
+            }
+            else{
+                $sql="INSERT INTO usuario(nombre_us,apellidos_us,edad,dni_us,contrasena_us,us_tipo) VALUES (:nombre,:apellido,:edad,:dni,:pass,:tipo)";
+                $query =$this->acceso->prepare($sql);
+                $query->execute(array(':nombre'=>$nombre,':apellido'=>$apellido,':edad'=>$edad,':dni'=>$dni,':pass'=>$pass,':tipo'=>$tipo));
+                echo 'add';
+            }
+        }
  }
 
 

@@ -93,5 +93,15 @@ if($_POST['funcion']=='buscar_usuarios_adm'){
     $jsonstring =json_encode($json);//nos devuelve un json codificao, nos devuelve un strin para poderlo usar en nusetro Js
     echo $jsonstring;
 }
+if($_POST['funcion']=='crear_usuario'){
+    $nombre =$_POST['nombre'];
+    $apellido =$_POST['apellido'];
+    $edad =$_POST['edad'];
+    $dni =$_POST['dni'];
+    $pass =$_POST['pass'];
+    $tipo =2;
+    $usuario->crear($nombre,$apellido,$edad,$dni,$pass,$tipo);
+}
+
 
 ?>

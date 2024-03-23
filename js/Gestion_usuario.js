@@ -4,6 +4,12 @@
 $(document).ready(function(){
     //si se presiona una tecla en buscar se va ejecutar esta funcion
     var tipo_usuario =$('#tipo_usuario').val();
+   
+   
+    if(tipo_usuario==2){//este if oculta el boton 'crear usuario' al rol de tecnico
+      $('#button-crear').hide();
+    }
+
     buscar_datos();
     var funcion;
     function buscar_datos(consulta){
@@ -77,16 +83,42 @@ $(document).ready(function(){
                     `;
                 
             })
-            $('#usuarios').html(template)
+            $('#usuarios').html(template);
         });
     }
     $(document).on('keyup','#buscar',function(){
         let valor = $(this).val();//con this se selecciona el id buscar y con val su valor
         if(valor!=""){//si el valor es diferente de vacio va a escribir una letra y lo va buscar en e
-            buscar_datos(valor)
+            buscar_datos(valor);
         }
         else{// de lo contrario
-            console.log(valor);
+          buscar_datos();
         }
+    });
+
+    $('#form-crear').submit(e=>{
+      let nombre = $('#nombre').val();
+      let apellido = $('#apellido').val();
+      let edad = $('#edad').val();
+      let dni = $('#dni').val();
+      let pass = $('#pass').val();
+      funcion='crear_usuario';
+      $.post('../controlador/UsuarioController.php',{nombre,apellido,edad,dni,pass,funcion},(response)=>{
+        if(response=='add'){
+          $('#add').hide('slow');//para que permanezca oculto
+          $('#add').show(2000);//para que el alert se muestr por 1 segundo
+          $('#add').hide(3000);//para que se oculten
+          $('#form-crear').trigger('reset');//para que todos los campos queden vacios
+          buscar_datos()// esto es para que nos agregue el card el nuevo usuario
+         }
+         else{
+          $('#noadd').hide('slow');//para que permanezca oculto
+          $('#noadd').show(2000);//para que el alert se muestr por 1 segundo
+          $('#noadd').hide(3000);//para que se oculten
+          $('#form-crear').trigger('reset');//para que todos los campos queden vacios
+
+         };
+      });
+      e.preventDefault();// anula el evento que por defecto a consecuencia del submit refresca la pagina
     })
-});
+})
