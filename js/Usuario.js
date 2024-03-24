@@ -40,7 +40,10 @@ $(document).ready(function(){
             $('#correo_us').html(correo);
             $('#sexo_us').html(sexo);
             $('#adicional_us').html(adicional);
-
+            $('#avatar2').attr('src',usuario.avatar);
+            $('#avatar1').attr('src',usuario.avatar);
+            $('#avatar3').attr('src',usuario.avatar);
+            $('#avatar4').attr('src',usuario.avatar);
 
         })//se crea un ajax('url',{},) tipo post requiere la url los datos y la funcion que se va a ejecutar
     }
@@ -110,6 +113,37 @@ $(document).ready(function(){
         });//ya que se accede a la contraseña que corresponde a la tabla usuario
         e.preventDefault();//Para evitar que se refresque la pagina.
 
-    });
+    })
+
+    $('#form-photo').submit(e=>{
+        let formData = new FormData($('#form-photo')[0]);
+        $.ajax({
+            url:'../controlador/UsuarioController.php',
+            type:'POST',
+            data:formData,
+            cache:false,
+            processData:false,
+            contentType:false
+        }).done(function(response){
+            const json = JSON.parse(response);
+            if (json.alert=='edit'){
+                $('#avatar1').attr('src',json.ruta);
+                $('#edit').hide('slow');//para que permanezca oculto
+                $('#edit').show(2000);//para que el alert se muestr por 1 segundo
+                $('#edit').hide(3000);//para que se oculten
+                $('#form-photo').trigger('reset');
+                buscar_usuario(id_usuario);
+            }
+            else{
+                $('#noedit').hide('slow');//para que permanezca oculto
+                $('#noedit').show(2000);//para que el alert se muestr por 1 segundo
+                $('#noedit').hide(3000);//para que se oculten
+                $('#form-photo').trigger('reset');
+            }
+            
+            
+        });
+        e.preventDefault();
+    })
 
 })//nos permite ejecutar funciones una vez cargada la pagina actual

@@ -19,7 +19,7 @@ $(document).ready(function(){
             let template='';
             usuarios.forEach(usuario=>{
                 template+=`
-                <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                <div usuarioId="${usuario.id}" class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                 <div class="card bg-light">
                   <div class="card-header text-muted border-bottom-0">
                     ${usuario.tipo}<!-- interpolacion  de variables -->
@@ -40,7 +40,7 @@ $(document).ready(function(){
                         </ul>
                       </div>
                       <div class="col-5 text-center">
-                        <img src="../../dist/img/user2-160x160.jpg" alt="" class="img-circle img-fluid">
+                        <img src="${usuario.avatar}" alt="" class="img-circle img-fluid">
                       </div>
                     </div>
                   </div>
@@ -58,8 +58,15 @@ $(document).ready(function(){
                         }
                         if(usuario.tipo_usuario==2){//este if es para incorporar un boton que permita ascender a los tecnicos a administradores
                           template+=`
-                          <button class="btn btn-primary ml-1">
-                              <i class="fas fa-window-close mr-2"> </i>Ascender
+                          <button class="ascender btn btn-primary ml-1" type="button" data-toggle="modal" data-target="#confirmar">
+                              <i class="fas fa-sort-amount-up mr-2"> </i>Ascender
+                          </button>
+                        `;
+                        }
+                        if(usuario.tipo_usuario==1){
+                          template+=`
+                          <button class="descender btn btn-secondary ml-1 type="button" data-toggle="modal" data-target="#confirmar"">
+                              <i class="fas fa-sort-amount-down mr-2"> </i>Descender
                           </button>
                         `;
                         }
@@ -69,7 +76,7 @@ $(document).ready(function(){
                           if(tipo_usuario==1 && usuario.tipo_usuario!=1 && usuario.tipo_usuario!=3){
                             template+=`
                             <button class="btn btn-danger">
-                                <i class="fas fa-window-close mr-2"> </i>Eliminar
+                                <i class="fas fa-window-clos mr-2"> </i>Eliminar
                             </button>
                           `;
                           }
@@ -120,5 +127,55 @@ $(document).ready(function(){
          };
       });
       e.preventDefault();// anula el evento que por defecto a consecuencia del submit refresca la pagina
-    })
+    });
+
+//se crea el evento para ascender usuarios
+    $(document).on('click','.ascender',(e)=>{
+       const elemento= $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;// el colocar varios parentElemnt me permite ir ascendiendo a los atributos padres de los div, 
+       //esto se hace con la finalidad de ubicarme en el div que contiene el  usuarioid
+      const id=$(elemento).attr('usuarioId');//Aca se accede directamente el id de usuario seleccionado para ascender
+       //console.log(id);// ya al hacer click en el boton ascender se obtiene el valor de id que le corresponde a ese usuario
+       //ahora ese dato se debe pasar ese dato al modal por medio de los id de los imput ocultos en modal de confirmar contraseña
+      funcion='ascender';
+      $('#id_user').val(id);//por medio de este selector se envía al modal el valor que se quiere almacenar
+      $('#funcion').val(funcion);
+    });
+
+//se crea el evento para descender usuarios es lo mismo que el anterior solo reeplazamos dnd dice ascender por descender y listo
+        $(document).on('click','.descender',(e)=>{
+          const elemento= $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;// el colocar varios parentElemnt me permite ir ascendiendo a los atributos padres de los div, 
+          //esto se hace con la finalidad de ubicarme en el div que contiene el  usuarioid
+         const id=$(elemento).attr('usuarioId');//Aca se accede directamente el id de usuario seleccionado para descender
+          //console.log(id);// ya al hacer click en el boton ascender se obtiene el valor de id que le corresponde a ese usuario
+          //ahora ese dato se debe pasar ese dato al modal por medio de los id de los imput ocultos en modal de confirmar contraseña
+         funcion='descender';
+         $('#id_user').val(id);//por medio de este selector se envía al modal el valor que se quiere almacenar
+         $('#funcion').val(funcion);
+       });
+// ahora se realiza el evento submit de ese modal accediendo al formulario "#form-confirmar"
+        $('#form-confirmar').submit(e=>{
+        let pass=$('#oldpass').val();
+        let id_usuario=$('#id_user').val();
+        funcion=$('#funcion').val();
+        //  console.log(pass); console.log(id_usuario);console.log(funcion); estos console se crean para poder observar la captura de datos y ver que todo va bien
+//se crea el Ajax de la siguiente manera URL del controlador, las variables y la funcion para obtener una respuesta(response) para hacer una funcion
+        $.post('../controlador/UsuarioController.php',{pass,id_usuario,funcion},(response)=>{
+          if(response=='ascendido'||response=='descendido'){
+            $('#confirmado').hide('slow');//para que permanezca oculto
+            $('#confirmado').show(2000);//para que el alert se muestr por 1 segundo
+            $('#confirmado').hide(3000);//para que se oculten
+            $('#form-confirmar').trigger('reset');//para que todos los campos queden vacios
+  
+          }
+          else{
+            $('#rechazado').hide('slow');//para que permanezca oculto
+            $('#rechazado').show(2000);//para que el alert se muestr por 1 segundo
+            $('#rechazado').hide(3000);//para que se oculten
+            $('#form-confirmar').trigger('reset');//para que todos los campos queden vacios
+  
+          }
+          buscar_datos();
+        });
+        e.preventDefault();
+});
 })

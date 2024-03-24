@@ -9,7 +9,55 @@ include_once'layouts/header.php';
   <?php
     include_once'layouts/nav.php';
   ?>
-  <!-- Button trigger modal -->
+  
+
+  <!-- Este Modal nos permite mostrar un formulario de confirmacion de contraseña
+    ccon el fin de darle mayor seguridad al sistema y así evitar vulnerabilidades en el mismo -->
+<div class="modal fade" id="confirmar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmar Accion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center"><img src="../img/avatar01.png" class="profile-user-img img-fluid img-circle"></div>
+      </div>
+      <div class="text-center">
+        <b>
+            <?php 
+                echo $_SESSION['nombre_us'];
+            ?>
+        </b>
+      </div>
+      <span>Se requiere password para confirmar accion</span>
+      <div class="alert alert-success text-center" id="confirmado" style='display:none;'>
+            <span><i class="fas fa-check m-1" ></i>Se modifico al usuario!</span>
+      </div>
+      <div class="alert alert-danger text-center" id="rechazado" style='display:none;'>
+        <span><i class="fas fa-times m-1"></i> La contraseña no es correcta</span>
+      </div>
+      <form id="form-confirmar">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend ">
+                  <span class="input-group-text"><i class="fas fa-unlock-alt"></i> </span>
+                </div>
+                <input id="oldpass" type="password" class="form-control" placeholder="Ingrese password Actual">
+                <input type="hidden" id="id_user"><!-- Estos input van a estar ocultos, estos datos se llenaran por los botones ascender y descender-->
+                <input type="hidden" id="funcion">
+              </div>
+
+
+           <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn bg-gradient-primary">Guardar Cambios</button>
+     </form>
+      </div>
+    </div>
+  </div>
+</div>
     <div class="modal fade" id="crearusuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
