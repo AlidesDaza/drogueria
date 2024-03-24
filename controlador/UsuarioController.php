@@ -150,4 +150,12 @@ if($_POST['funcion']=='descender'){
     $usuario->descender($pass,$id_descendido,$id_usuario);
 
 }
+// esta funcion es para eliminar usuario
+if($_POST['funcion']=='borrar_usuario'){
+    $pass=$_POST['pass'];
+    $id_descendido=$_POST['id_usuario'];
+    $usuario->borrar($pass,$id_descendido,$id_usuario);
+
+}
+
 ?>

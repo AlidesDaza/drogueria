@@ -146,7 +146,7 @@ include_once'layouts/header.php';
                                         </li>
                                         <li class="list-group-item">
                                             <b style="color:#0B7300">Tipo de usuario</b>
-                                            <span id="us_tipo" class=" float-right badge badge-primary"> Admistrador</span><!-- El badge es una insignia que resalta. badge-primary le da un color azul -->
+                                            <span id="us_tipo" class=" float-right "> Admistrador</span><!-- El badge es una insignia que resalta. badge-primary le da un color azul -->
                                         </li>
                                         <button data-toggle="modal" data-target="#cambiocontra" type="button" class="btn btn-block btn-outline-warning btn-sm">Cambiar Contrasena</button>
                                     </ul>
