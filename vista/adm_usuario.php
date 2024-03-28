@@ -78,23 +78,23 @@ include_once'layouts/header.php';
                         <form id="form-crear">
                             <div class="form-group">
                                 <label for="nombre">Nombres</label>
-                                <input id="nombre" type="text" class="form-control" placeholder="Ingrese Nombre"required>
+                                <input id="nombre" pattern="^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$" type="text" class="form-control" placeholder="Ingrese Nombre"required>
                             </div>
                             <div class="form-group">
                                 <label for="apellido">Apellidos</label>
-                                <input id="apellido"  type="text" class="form-control" placeholder="Ingrese Apellido"required>
+                                <input id="apellido" pattern="^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$"  type="text" class="form-control" placeholder="Ingrese Apellido"required>
                             </div>
                             <div class="form-group">
                                 <label for="edad">Fecha Nacimiento</label>
-                                <input id="edad" type="date" class="form-control" placeholder="YYYY-MM-DD"required>
+                                <input id="edad" type="date" class="form-control"  min="1924-01-01" max="2008-12-31"placeholder="DD-MM-YYYY"required pattern="/^(?:(?:(?:0?[1-9]|1\d|2[0-8])[/](?:0?[1-9]|1[0-2])|(?:29|30)[/](?:0?[13-9]|1[0-2])|31[/](?:0?[13578]|1[02]))[/](?:0{2,3}[1-9]|0{1,2}[1-9]\d|0?[1-9]\d{2}|[1-9]\d{3})|29[/]0?2[/](?:\d{1,2}(?:0[48]|[2468][048]|[13579][26])|(?:0?[48]|[13579][26]|[2468][048])00))$/">
                             </div>
                             <div class="form-group">
                                 <label for="dni">Cedula Ciudadania</label>
-                                <input id="dni" type="text" class="form-control" placeholder="111111111 Sin puntos"required>
+                                <input id="dni"  pattern="\\d{5}[A-HJ-NP-TV-Z]" min="99999" max="999999999"  type="number" class="form-control" placeholder="111111111 Sin puntos"required>
                             </div>
                             <div class="form-group">
                                 <label for="pass">Contraseña</label>
-                                <input id="pass" type="pass" class="form-control" placeholder="Ingrese contraseña"required>
+                                <input id="pass" type="password" pattern=".{5,12}"  mixlength="5" maxlength="12" class="form-control" placeholder="Ingrese contraseña"required> 
                             </div>
                        
                     </div>
