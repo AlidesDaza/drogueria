@@ -207,7 +207,7 @@ include_once'layouts/header.php';
                                         <div class="form-group row">
                                             <label for="telefono" class="col-sm-2 col-form-label">Telefono</label>
                                             <div class="col-sm-10">
-                                                <input type="integer" id="telefono" class="form-control"><!--no usamo name xq vamos usar javaScript, empleamos el Id para poder seleccionarla -->
+                                                <input type="tel" pattern="[0-9]{10}"  id="telefono" class="form-control"><!--no usamo name xq vamos usar javaScript, empleamos el Id para poder seleccionarla -->
                                             </div>
                                         </div>
 
@@ -221,7 +221,7 @@ include_once'layouts/header.php';
                                         <div class="form-group row">
                                             <label for="correo" class="col-sm-2 col-form-label">Correo</label>
                                             <div class="col-sm-10">
-                                                <input type="text" id="correo" class="form-control"><!--no usamo name xq vamos usar javaScript, empleamos el Id para poder seleccionarla -->
+                                                <input type="email" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" id="correo" class="form-control"><!--no usamo name xq vamos usar javaScript, empleamos el Id para poder seleccionarla -->
                                             </div>
                                         </div>
 
