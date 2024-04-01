@@ -21,11 +21,11 @@ include_once'layouts/header.php';
                         </button>
                     </div>
                     <div class="card-body">
-                        <div class="alert alert-success text-center" id="add" style='display:none;'>
-                           <span><i class="fas fa-check m-1" ></i>Usuario nuevo creado exitosamente!!</span>
+                        <div class="alert alert-success text-center" id="add-laboratorio" style='display:none;'>
+                           <span><i class="fas fa-check m-1" ></i>Laboratorio creado exitosamente!!</span>
                         </div>
-                        <div class="alert alert-danger text-center" id="noadd" style='display:none;'>
-                           <span><i class="fas fa-times m-1"></i> Cedula Ya existe para otro usuario</span>
+                        <div class="alert alert-danger text-center" id="noadd-laboratorio" style='display:none;'>
+                           <span><i class="fas fa-times m-1"></i> Laboratorio ya existe!!</span>
                         </div>
                         <form id="form-crear-laboratorio">
                             <div class="form-group">
@@ -57,10 +57,10 @@ include_once'layouts/header.php';
                         </button>
                     </div>
                     <div class="card-body">
-                        <div class="alert alert-success text-center" id="add" style='display:none;'>
+                        <div class="alert alert-success text-center" id="add-tipo" style='display:none;'>
                            <span><i class="fas fa-check m-1" ></i>Usuario nuevo creado exitosamente!!</span>
                         </div>
-                        <div class="alert alert-danger text-center" id="noadd" style='display:none;'>
+                        <div class="alert alert-danger text-center" id="noadd-tipo" style='display:none;'>
                            <span><i class="fas fa-times m-1"></i> Cedula Ya existe para otro usuario</span>
                         </div>
                     <form id="form-crear-tipo">
@@ -93,10 +93,10 @@ include_once'layouts/header.php';
                         </button>
                     </div>
                     <div class="card-body">
-                        <div class="alert alert-success text-center" id="add" style='display:none;'>
+                        <div class="alert alert-success text-center" id="add-presentacion" style='display:none;'>
                            <span><i class="fas fa-check m-1" ></i>Usuario nuevo creado exitosamente!!</span>
                         </div>
-                        <div class="alert alert-danger text-center" id="noadd" style='display:none;'>
+                        <div class="alert alert-danger text-center" id="noadd-presentacion" style='display:none;'>
                            <span><i class="fas fa-times m-1"></i> Cedula Ya existe para otro usuario</span>
                         </div>
                         <form id="form-crear-presentacion">
@@ -210,3 +210,4 @@ else{
     header('Location: ../index.php');
 }
 ?>
+<script src="../js/Laboratorio.js"></script>
