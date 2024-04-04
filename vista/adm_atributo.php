@@ -10,6 +10,48 @@ include_once'layouts/header.php';
     include_once'layouts/nav.php';
   ?>
 
+<div class="modal fade" id="cambiologo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cambiar Logo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <img id="logoactual" src="../img/avatar01.png" class="profile-user-img img-fluid img-circle"></div>
+      </div>
+      <div class="text-center">
+        <b id="nombre_logo">
+
+        </b>
+      </div>
+      <div class="alert alert-success text-center" id="edit" style='display:none;'>
+            <span><i class="fas fa-check m-1" ></i>Se cambio logo!!</span>
+      </div>
+      <div class="alert alert-danger text-center" id="noedit" style='display:none;'>
+        <span><i class="fas fa-times m-1"></i>Formato de imagen no soportado</span>
+      </div>
+      <form id="form-logo" enctype="multipart/form-data">
+            <div class="input-group mb-3 ml-5 mt-2">
+            <input type="file" name="photo" class="input-group">
+            <input type="hidden" name="funcion" id="funcion">
+            <input type="hidden" name="id_logo_lab" id="id_logo_lab">
+            
+          
+            </div>
+
+           <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn bg-gradient-primary">Guardar Cambios</button>
+     </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id="crearlaboratorio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -150,7 +192,7 @@ include_once'layouts/header.php';
                                 <li class="nav-item"><a href="#presentacion" class="nav-link" data-toggle="tab">Presentacion</a></li>
                             </ul>
                         </div>
-                        <div class="card-body"> 
+                        <div class="card-body p-0"> 
                             <div class="tab-content" >
                                 <div class="tab-pane active" id='laboratorio'>
                                     <div class="card card-success">
@@ -161,8 +203,23 @@ include_once'layouts/header.php';
                                                 <div class="input-group-append"><button class="btn btn-default"><i class="fas fa-search"></i></button></div>
                                             </div>
                                         </div>
-                                        <div class="card-body"></div>
-                                        <div class="card-footer"></div>
+                                        <div class="card-body p-0 table-responsive">
+                                            <table class="table table-hover text-nowrap">
+                                                <thead class="table-success">
+                                                   <tr>
+                                                    <th>Laboratorio</th>
+                                                    <th>Logo</th>
+                                                    <th>Acción</th>
+                                                   </tr> 
+                                                </thead>
+                                                <tbody class="table-active" id="laboratorios">
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="card-footer">
+
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane" id='tipo'>

@@ -34,14 +34,26 @@ class Laboratorio{
         }   
 
         else{
-            $sql="SELECT * FROM laboratorio where nombre NOT LIKE'' ORDER BY id_laboratorio LIMIT 25";
-            $query =$this->acceso->prepare($sql);
+            $sql="SELECT * FROM laboratorio where nombre NOT LIKE '' ORDER BY id_laboratorio LIMIT 25";
+            $query = $this->acceso->prepare($sql);
             $query->execute();
             $this->objetos=$query->fetchall();
             return $this->objetos;
         }   
 
-        }
+    }
+         //Metodo cambiar_photo, para cambiar el avatar
+        function cambiar_logo($id,$nombre){
+            $sql="SELECT avatar FROM laboratorio where id_laboratorio=:id";// esto se realiza para saber si el usuario tiene imagen en la base de datos para ese Id_usuario
+            $query= $this->acceso->prepare($sql);
+            $query->execute(array(':id'=>$id));
+            $this->objetos = $query->fetchall();// aca nos realiza la consulta y busca todas las coicidencia que se realiza a la BD
+            
+            $sql="UPDATE laboratorio SET avatar=:nombre where id_laboratorio=:id";//se busca a el usuario id y en su campo contrasena_us se va colocar la nueva contraseña
+            $query=$this->acceso->prepare($sql);//se accede primero al acceso PDO se le pasa el metodo prepare con el sql
+            $query->execute(array(':id'=>$id,':nombre'=>$nombre));//en este query se realiza el metodo EXECUTE  para pasarle el array de las variables 
+            return $this->objetos;
+         }
 }
 
 ?>
