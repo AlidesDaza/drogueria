@@ -53,4 +53,9 @@ if($_POST['funcion']=='cambiar_logo'){
      }
 
 }
+//funcion para eliminar Laboratorio
+if($_POST['funcion']=='borrar'){
+    $id=$_POST['id'];
+    $laboratorio->borrar($id);
+}
 ?>

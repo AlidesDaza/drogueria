@@ -107,4 +107,60 @@ $(document).ready(function(){
         });
         e.preventDefault();
     })
+    //Eliminar laboratorio
+    $(document).on('click','.borrar',(e)=>{
+        funcion="borrar";
+        const elemento = $(this)[0].activeElement.parentElement.parentElement;
+        const id = $(elemento).attr('labId');// con esto obtengo el Id
+        const nombre = $(elemento).attr('labNombre');// con esto obtengo nombre
+        const avatar = $(elemento).attr('labAvatar');// con esto obtengo la imagen
+    // Codigo de SweetAlert2 Para que salga el boton de confirmar 
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger mr-2"
+        },
+        buttonsStyling: false
+      });
+      swalWithBootstrapButtons.fire({
+        title: '¿ Desea Eliminar '+nombre+'?',
+        text: "No se podra revertir la accion",
+        imageUrl:''+avatar+'',
+        imageWidth: 100,
+        imageHeight:100,
+        showCancelButton: true,
+        confirmButtonText: "Si, desea borrar!",
+        cancelButtonText: "No, cancelar!",
+        reverseButtons: true
+      }).then((result) => {
+        if (result.value) {
+            $.post('../controlador/LaboratorioController.php',{id,funcion},(response)=>{
+              if(response=='borrado'){
+                swalWithBootstrapButtons.fire({
+                    title: "Borrado",
+                    text: 'El laboratorio '+nombre+'  fue borrado :)',
+                    icon: "success"
+                  });
+                  buscar_lab();
+              }
+              else{
+                swalWithBootstrapButtons.fire({
+                    title: "No se pudo borrar!",
+                    text: 'El laboratorio '+nombre+'  no fue borrado ya que esta siendo utilizado por un producto',
+                    icon: "error"
+                  });
+                  buscar_lab();
+              }
+            })
+
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelado",
+            text: 'El laboratorio '+nombre+'  no fue borrado :)',
+            icon: "error"
+          });
+          buscar_lab();
+        }
+      });          
+    })
 });

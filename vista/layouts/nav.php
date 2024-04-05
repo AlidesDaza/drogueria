@@ -2,7 +2,9 @@
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../css/css/all.min.css">
-  <!-- Ionicons -->
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="../css/sweetalert2.css">
+    <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="../css/adminlte.min.css">

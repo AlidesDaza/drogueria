@@ -54,6 +54,17 @@ class Laboratorio{
             $query->execute(array(':id'=>$id,':nombre'=>$nombre));//en este query se realiza el metodo EXECUTE  para pasarle el array de las variables 
             return $this->objetos;
          }
+         function borrar($id){
+            $sql="DELETE FROM laboratorio where id_laboratorio=:id";// esto se realiza para saber si el usuario tiene imagen en la base de datos para ese Id_usuario
+            $query= $this->acceso->prepare($sql);
+            $query->execute(array(':id'=>$id));
+            if(!empty($query->execute(array(':id'=>$id)))){
+                echo 'borrado';
+            }
+            else{
+                echo 'noborrado';
+            }
+         }
 }
 
 ?>
