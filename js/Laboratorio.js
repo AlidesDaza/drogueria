@@ -1,10 +1,18 @@
 $(document).ready(function(){
     buscar_lab;//se coloca acá para que aparezcan todos los laboratorios
     var funcion;
+    var edit=false;
     $('#form-crear-laboratorio').submit(e=>{
         let nombre_laboratorio = $('#nombre-laboratorio').val();
+        let id_editado = $('#id_editar_lab').val();
+        if(edit==false){
+            funcion='crear';
+        }
+        else {
+            funcion='editar';
+        }
         funcion='crear';
-        $.post('../controlador/LaboratorioController.php',{nombre_laboratorio,funcion},(response)=>{
+        $.post('../controlador/LaboratorioController.php',{nombre_laboratorio,id_editado,funcion},(response)=>{
 
             if(response=='add'){
                 $('#add-laboratorio').hide('slow');//para que permanezca oculto
@@ -13,7 +21,7 @@ $(document).ready(function(){
                 $('#form-crear-laboratorio').trigger('reset');//para que todos los campos queden vacios
                 buscar_lab();//para que me aparezca el ingreso nuevo
             }
-            else{
+            if(response=='noadd'){
 
                 $('#noadd-laboratorio').hide('slow');//para que permanezca oculto
                 $('#noadd-laboratorio').show(2000);//para que el alert se muestr por 1 segundo
@@ -21,6 +29,15 @@ $(document).ready(function(){
                 $('#form-crear-laboratorio').trigger('reset');//para que todos los campos queden vacios
            
             }
+            if(response=='edit'){
+                $('#edit-lab').hide('slow');//para que permanezca oculto
+                $('#edit-lab').show(2000);//para que el alert se muestr por 1 segundo
+                $('#edit-lab').hide(3000);//para que se oculten
+                $('#form-crear-laboratorio').trigger('reset');//para que todos los campos queden vacios
+                buscar_lab();//para que me aparezca el ingreso nuevo
+            
+            }
+            edit==false;
         })
         e.preventDefault(); 
 
@@ -40,7 +57,7 @@ $(document).ready(function(){
                         <i class="far fa-image"></i>
                     </button>
                     
-                    <button class="editar btn btn-success" title="Editar">
+                    <button class="editar btn btn-success" title="Editar" type="button"  data-toggle="modal" data-target="#crearlaboratorio">
                         <i class="far fa-pencil-alt"></i>
                     </button>
                     
@@ -135,7 +152,8 @@ $(document).ready(function(){
       }).then((result) => {
         if (result.value) {
             $.post('../controlador/LaboratorioController.php',{id,funcion},(response)=>{
-              if(response=='borrado'){
+                edit==false;
+                if(response=='borrado'){
                 swalWithBootstrapButtons.fire({
                     title: "Borrado",
                     text: 'El laboratorio '+nombre+'  fue borrado :)',
@@ -162,5 +180,15 @@ $(document).ready(function(){
           buscar_lab();
         }
       });          
+    })
+    //Modificar Laboratorio
+
+    $(document).on('click','.editar',(e)=>{
+        const elemento = $(this)[0].activeElement.parentElement.parentElement;
+        const id = $(elemento).attr('labId');// con esto obtengo el Id
+        const nombre = $(elemento).attr('labNombre');// con esto obtengo nombre
+      $('#id_editar_lab').val(id);
+      $('#nombre-laboratorio').val(nombre);
+      edit=true;
     })
 });

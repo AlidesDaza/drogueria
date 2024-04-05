@@ -69,16 +69,20 @@ include_once'layouts/header.php';
                         <div class="alert alert-danger text-center" id="noadd-laboratorio" style='display:none;'>
                            <span><i class="fas fa-times m-1"></i> Laboratorio ya existe!!</span>
                         </div>
+                        <div class="alert alert-success text-center" id="edit-lab" style='display:none;'>
+                           <span><i class="fas fa-check m-1" ></i>Se edito correctamente!!</span>
+                        </div>
                         <form id="form-crear-laboratorio">
                             <div class="form-group">
                                 <label for="nombre-laboratorio">Nombre Laboratorio</label>
                                 <input id="nombre-laboratorio" pattern="^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$" type="text" class="form-control" placeholder="Ingrese Nombre"required>
+                                <input type="hidden" id="id_editar_lab">
                             </div>
                            
                        
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn bg-gradient-primary float-right m-1">Crear</button>
+                        <button type="submit" class="btn bg-gradient-primary float-right m-1">Guardar</button>
                         <button type="button"  data-dismiss="modal" class="btn bg-gradient-secondary float-right m-1">Cerrar</button>
                         
                     </form>

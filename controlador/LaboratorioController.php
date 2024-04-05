@@ -7,6 +7,13 @@ if($_POST['funcion']=='crear'){
     $laboratorio->crear($nombre,$avatar);
 }
 
+//Para editar laboratorio
+if($_POST['funcion']=='editar'){
+    $nombre = $_POST['nombre_laboratorio'];
+    $id_editado=$_POST['id_editado'];
+    $laboratorio->editar($nombre,$id_editado);
+}
+
 if($_POST['funcion']=='buscar'){
     $laboratorio->buscar();//no se le pasa ningún parametro porque el valor lo vamos a captura en el modelo Laboratorio.php
     $json=array();
