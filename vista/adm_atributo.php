@@ -103,22 +103,26 @@ include_once'layouts/header.php';
                         </button>
                     </div>
                     <div class="card-body">
-                        <div class="alert alert-success text-center" id="add-tipo" style='display:none;'>
-                           <span><i class="fas fa-check m-1" ></i>Usuario nuevo creado exitosamente!!</span>
+                    <div class="alert alert-success text-center" id="add-tipo" style='display:none;'>
+                           <span><i class="fas fa-check m-1" ></i>Tipo creado exitosamente!!</span>
                         </div>
                         <div class="alert alert-danger text-center" id="noadd-tipo" style='display:none;'>
-                           <span><i class="fas fa-times m-1"></i> Cedula Ya existe para otro usuario</span>
+                           <span><i class="fas fa-times m-1"></i> Tipo ya existe!!</span>
+                        </div>
+                        <div class="alert alert-success text-center" id="edit-tip" style='display:none;'>
+                           <span><i class="fas fa-check m-1" ></i>Se edito correctamente!!</span>
                         </div>
                     <form id="form-crear-tipo">
                             <div class="form-group">
                                 <label for="nombre-tipo">Nombre Tipo</label>
                                 <input id="nombre-tipo" pattern="^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$" type="text" class="form-control" placeholder="Ingrese Nombre"required>
+                                <input type="hidden" id="id_editar_tip">
                             </div>
                            
                        
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn bg-gradient-primary float-right m-1">Crear</button>
+                        <button type="submit" class="btn bg-gradient-primary float-right m-1">Guardar</button>
                         <button type="button"  data-dismiss="modal" class="btn bg-gradient-secondary float-right m-1">Cerrar</button>
                         
                     </form>
@@ -138,23 +142,27 @@ include_once'layouts/header.php';
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="card-body">
-                        <div class="alert alert-success text-center" id="add-presentacion" style='display:none;'>
-                           <span><i class="fas fa-check m-1" ></i>Usuario nuevo creado exitosamente!!</span>
+                   <div class="card-body">
+                    <div class="alert alert-success text-center" id="add-pre" style='display:none;'>
+                           <span><i class="fas fa-check m-1" ></i>Presentacion creado exitosamente!!</span>
                         </div>
-                        <div class="alert alert-danger text-center" id="noadd-presentacion" style='display:none;'>
-                           <span><i class="fas fa-times m-1"></i> Cedula Ya existe para otro usuario</span>
+                        <div class="alert alert-danger text-center" id="noadd-pre" style='display:none;'>
+                           <span><i class="fas fa-times m-1"></i> Presentacion ya existe!!</span>
+                        </div>
+                        <div class="alert alert-success text-center" id="edit-pre" style='display:none;'>
+                           <span><i class="fas fa-check m-1" ></i>Se edito correctamente!!</span>
                         </div>
                         <form id="form-crear-presentacion">
                             <div class="form-group">
                                 <label for="nombre-presentacion">Nombre Presentacion</label>
                                 <input id="nombre-presentacion" pattern="^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$" type="text" class="form-control" placeholder="Ingrese Nombre"required>
+                                <input type="hidden" id="id_editar_pre">
                             </div>
                            
                        
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn bg-gradient-primary float-right m-1">Crear</button>
+                        <button type="submit" class="btn bg-gradient-primary float-right m-1">Guardar</button>
                         <button type="button"  data-dismiss="modal" class="btn bg-gradient-secondary float-right m-1">Cerrar</button>
                         
                     </form>
@@ -235,7 +243,21 @@ include_once'layouts/header.php';
                                                 <div class="input-group-append"><button class="btn btn-default"><i class="fas fa-search"></i></button></div>
                                             </div>
                                         </div>
-                                        <div class="card-body"></div>
+                                        
+                                        <div class="card-body p-0 table-responsive">
+                                            <table class="table table-hover text-nowrap">
+                                                <thead class="table-success">
+                                                   <tr>
+                                                    <th>Tipos</th>
+                                                    <th>Acción</th>
+                                                   </tr> 
+                                                </thead>
+                                                <tbody class="table-active" id="tipos">
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
                                         <div class="card-footer"></div>
                                     </div>
                                 </div>
@@ -248,7 +270,19 @@ include_once'layouts/header.php';
                                                 <div class="input-group-append"><button class="btn btn-default"><i class="fas fa-search"></i></button></div>
                                             </div>
                                         </div>
-                                        <div class="card-body"></div>
+                                        <div class="card-body p-0 table-responsive">
+                                            <table class="table table-hover text-nowrap">
+                                                <thead class="table-success">
+                                                   <tr>
+                                                    <th>Presentacion</th>
+                                                    <th>Acción</th>
+                                                   </tr> 
+                                                </thead>
+                                                <tbody class="table-active" id="presentaciones">
+
+                                                </tbody>
+                                            </table>
+                                        </div>
                                         <div class="card-footer"></div>
                                     </div>
                                 </div>
@@ -272,3 +306,5 @@ else{
 }
 ?>
 <script src="../js/Laboratorio.js"></script>
+<script src="../js/Tipo.js"></script>
+<script src="../js/Presentacion.js"></script>

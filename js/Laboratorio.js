@@ -58,11 +58,11 @@ $(document).ready(function(){
                     </button>
                     
                     <button class="editar btn btn-success" title="Editar" type="button"  data-toggle="modal" data-target="#crearlaboratorio">
-                        <i class="far fa-pencil-alt"></i>
+                        <i class="fas fa-pencil-alt"></i>
                     </button>
                     
                     <button class="borrar btn btn-danger" title="Eliminar">
-                        <i class="far fa-trash-alt"></i>
+                        <i class="fas fa-trash-alt"></i>
                     </button>
                 </td>
                 <td><img src="${laboratorio.avatar}" class="img-fluid" rounded width="70" heigth="70"></td>

@@ -119,7 +119,6 @@ include_once'layouts/header.php';
             </ol>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
     </section>
     <section>
         <div class="content">
@@ -200,7 +199,7 @@ include_once'layouts/header.php';
                                  <div class="alert alert-success text-center" id="editado" style='display:none;'>
                                         <span><i class="fas fa-check m-1" ></i>Editado</span>
                                     </div>
-                                    <div class="alert alert-danger text-center" id="noeditado" style='display:none;'>
+                                    <div class="alert alert-danger text-center" id="noeditado" style='display:none;'
                                       <span><i class="fas fa-times m-1"></i> No esta habilitado la ediccion</span>
                                     </div>
                                     <form id='form-usuario' class="form-horizontal">
